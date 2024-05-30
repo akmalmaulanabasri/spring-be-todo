@@ -5,7 +5,6 @@ import com.akmal.todo.todo.service.TodoService;
 import com.akmal.todo.utils.ResponseAPI;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,18 +15,18 @@ public class TodoResource {
     @Autowired
     TodoService todoService;
 
-    @GetMapping("/")
+    @GetMapping("/todo")
     public ResponseEntity<ResponseAPI<List<Todo>>> todo() {
         ResponseAPI response = new ResponseAPI<Todo>();
         List<Todo> todo = (List<Todo>) todoService.getAll();
 
         response.setStatus(true);
-        response.setMessage("Suucess");
+        response.setMessage("Success");
         response.setContent(todo);
         return ResponseEntity.ok(response);
     }
 
-    @PostMapping("/")
+    @PostMapping("/todo")
     public ResponseEntity<ResponseAPI<Todo>> save(@RequestBody Todo body){
         ResponseAPI response = new ResponseAPI<Todo>();
 
